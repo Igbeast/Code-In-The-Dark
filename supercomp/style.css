@@ -1,0 +1,266 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set Gradient Background Color */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #030014 0%, #000000 50%, #7038FA 100%); /* Deep red, black, and purple gradient */
+    color: white; /* Text color */
+    position: relative;
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    flex-direction: column; /* Stack the items vertically */
+    min-height: 100vh; /* Ensures that the body takes at least the full height of the viewport */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Create the Curvy Line Effect using Clip-path */
+body::after {
+    content: "";
+    position: absolute;
+    top: 50%; /* Position the curve at the center */
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom, #000000, #7038FA); /* Curvy line blending from black to purple */
+    clip-path: ellipse(50% 100% at 50% 0%); /* Creates a smooth curvy line */
+    z-index: -1; /* Keep the curvy line behind other content */
+    transition: all 1s ease; /* Smooth transition effect */
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #080808;
+    color: white;
+    position: absolute; /* Fix the header at the top */
+    top: 0;
+    width: 100%;
+}
+
+header .left,
+header .center,
+header .right {
+    display: flex;
+    align-items: center;
+}
+
+header .left img.logo {
+    height: 40px; /* Adjust the size as needed */
+}
+
+header .center span,
+header .right span {
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+header .center {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+header .center span {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* Hover Effect for Center Text */
+header .center span:hover {
+    color: #f39c12;
+    text-decoration: underline;
+}
+
+/* Left and Right Sections */
+header .left span,
+header .right span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Oval shape for Contact Us */
+header .right span {
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transitions */
+    padding: 8px 20px; /* Add padding to make it look like a button */
+    border-radius: 50px; /* Create the oval shape */
+    background-color: #9b59b6; /* Purple background initially */
+    color: white; /* White text */
+    cursor: pointer; /* Pointer on hover */
+    display: inline-block; /* Ensure padding works */
+    font-weight: bold;
+}
+
+/* Hover Effect for Contact Us (Purple to White) */
+header .right span:hover {
+    color: #9b59b6; /* Text turns purple */
+    background-color: white; /* Background turns white */
+}
+
+/* Typing Animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Blinking cursor effect */
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+/* Container for the animated text below the header */
+.typing-container {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px; /* Create space below the header */
+    color: white;
+}
+
+/* Typing effect for each phrase */
+.typing-text {
+    display: inline-block;
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid white; /* Creates the cursor effect */
+    animation: typing 4s steps(20) 1s forwards, blink 0.75s step-end infinite;
+}
+
+/* Phrase hiding/showing animation */
+@keyframes changeText {
+    0%, 33% {
+        opacity: 1;
+    }
+    34%, 100% {
+        opacity: 0;
+    }
+}
+
+.typing-container span:nth-child(1) {
+    animation: typing 4s steps(20) 1s forwards, blink 0.75s step-end infinite, changeText 12s infinite 0s;
+}
+
+.typing-container span:nth-child(2) {
+    animation: typing 4s steps(20) 1s forwards, blink 0.75s step-end infinite, changeText 12s infinite 4s;
+}
+
+.typing-container span:nth-child(3) {
+    animation: typing 4s steps(20) 1s forwards, blink 0.75s step-end infinite, changeText 12s infinite 8s;
+}
+
+/* Oval shape for "BUDS x SUPERCOMP" text below the organized by text */
+.buds-text {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #9b59b6; /* Purple background */
+    color: white;
+    border-radius: 50px; /* Oval shape */
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px; /* Space between the typing animation and the "BUDS x SUPERCOMP" text */
+    cursor: pointer;
+}
+
+/* Card Container Styling */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Space between cards */
+    margin-top: 50px; /* Add space between the "BUDS x SUPERCOMP" text and the cards */
+    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+}
+
+/* Card Styling */
+.card {
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    border-radius: 15px; /* Rounded corners */
+    width: 350px; /* Increased card width */
+    padding: 30px; /* Increased padding for more space inside the card */
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5); /* Increased shadow effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color: white;
+}
+
+/* Card Image Styling */
+.card img {
+    width: 100%; /* Full width for images */
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px; /* Increased space between image and text */
+}
+
+/* Hover effect for cards */
+.card:hover {
+    transform: translateY(-15px); /* Increased lift effect */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7); /* Stronger shadow on hover */
+}
+
+/* Card Text Styling */
+.card p {
+    font-size: 18px; /* Increased font size */
+    font-weight: 400;
+    line-height: 1;
+}
+@keyframes cardFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Card Styling */
+.card {
+    background-color: #222; /* Dark background for card */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    transition: transform 0.3s ease;
+    opacity: 0; /* Initially hidden */
+    animation: cardFadeIn 1s ease-out forwards; /* Apply fade-in and scale-up */
+}
+
+/* Hover Effect for Cards */
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Apply a small delay to each card to make the animation appear sequentially */
+.card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+.card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+.card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+.card:nth-child(4) {
+    animation-delay: 0.8s;
+}
+.card:nth-child(5) {
+    animation-delay: 1s;
+}
